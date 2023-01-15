@@ -7,3 +7,14 @@ number = {
 }
 for key, value in number.items():
     print(f"\n{key}:{value}")
+
+glossary = {
+    'dima':'zhuravlev',
+    'katya':'smirnova',
+    'genia':'korobeinikov',
+    'iliya':'sharkov',
+    'katia':'zhuravleva',
+    'oksana':'smirnova'
+}
+for last_name in set(glossary.values()):
+    print(last_name)
