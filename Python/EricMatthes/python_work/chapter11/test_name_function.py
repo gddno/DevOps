@@ -9,3 +9,21 @@ class NamesTestCase(unittest.TestCase):
 	    self.assertEqual(formatted_name,'Joplin Janis')
 
 unittest.main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
