@@ -9,7 +9,8 @@ while True:
     last = input("Please give me a last name: ")
     if last == 'q':
 	    break
+	middle = input("Please give me a middle name: " )
 
-    formatted_name = get_formatted_name(first, last)
+    formatted_name = get_formatted_name(first, last, midle)
 
     print("\tNeatly formatted name: " + formatted_name + ".")
