@@ -1,0 +1,36 @@
+shopt -s extglob -- измененние поведения оболочки активирует регулярные выражения
+rm -v !('name_file') -- удаляем все, за исключением name_file
+
+
+
+netstat -plutn --смотрим сетевые подключения
+
+
+
+tail -f /var/log/dnsmasq/dnsmasq_20.254.log
+
+
+mount
+
+
+ip a
+
+
+
+sed 
+
+
+
+chroot
+
+
+
+grep -E "^%|/^[aA]dm|shut" /etc/sudoers
+
+
+
+pdp ls -Md /
+
+
+
+usermac kbch5
