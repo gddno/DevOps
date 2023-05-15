@@ -7,7 +7,9 @@ import (
 	"strings"
 )
 
-func HomeRouteHandler(w http.ResponseWriter, r *http.Request) {
+func HomeRouterHandler(w http.ResponseWriter, r *http.Request) {
+	log.Default()
+
 	r.ParseForm()
 	fmt.Println(r.Form)
 	fmt.Println("path", r.URL.Path)
@@ -21,9 +23,9 @@ func HomeRouteHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandlerFunc("/", HomeRouteHandler)
-	err := http.ListenAndServe(":9000", nil)
-	if err != nil {
-		log.Fatal("ListenAndServer: ", err)
-	}
+	http.HandleFunc("/", HomeRouterHandler)
+	//err := http.ListenAndServe(":9000", nil)
+	// if err != nil {
+	log.Fatal(http.ListenAndServe(":9000", nil))
+	// }
 }
