@@ -80,16 +80,18 @@ func showSomeId(w http.ResponseWriter, r *http.Request) {
 func selectPage(w http.ResponseWriter, r *http.Request) {
 	page, _ := strconv.Atoi(r.URL.Query().Get("page"))
 	// fmt.Fprintf(w, "hsdgfhd %s", page)
-	if page == 1 {
-		tmpl, _ := template.ParseFiles("html_templates/1.html")
-		tmpl.Execute(w, nil)
-	} else if page == 2 {
-		tmpl, _ := template.ParseFiles("html_templates/2.html")
-		tmpl.Execute(w, nil)
-	} else {
-		tmpl, _ := template.ParseFiles("html_templates/3.html")
-		tmpl.Execute(w, nil)
-	}
+	// if page == 1 {
+	// 	tmpl, _ := template.ParseFiles("html_templates/1.html")
+	// 	tmpl.Execute(w, nil)
+	// } else if page == 2 {
+	// 	tmpl, _ := template.ParseFiles("html_templates/2.html")
+	// 	tmpl.Execute(w, nil)
+	// } else {
+	// 	tmpl, _ := template.ParseFiles("html_templates/3.html")
+	// 	tmpl.Execute(w, nil)
+	// }
+	tmpl,_ := template.ParseFiles("html_teplates/$d.html", page)
+	tmpl.Execute(w,nil)
 }
 
 func main() {
