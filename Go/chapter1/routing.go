@@ -1,9 +1,8 @@
 package main
 
 import (
-	// "debug/elf"
 	"encoding/json"
-	// "fmt"
+	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -58,40 +57,46 @@ func about_page(w http.ResponseWriter, r *http.Request) {
 	log.Println("Вернулись на about")
 
 }
-
+//Меняем html шаблон из строки браузера
 func showSomeId(w http.ResponseWriter, r *http.Request) {
 	id1, _ := strconv.Atoi(r.URL.Query().Get("id1"))
 	id2, _ := strconv.Atoi(r.URL.Query().Get("id2"))
+	id3, _ := strconv.Atoi(r.URL.Query().Get("id3"))
 
 	type ViewData struct {
 		Id1 string
 		Id2 string
-	}
+		Id3 string
+	};
 
 	data := ViewData{
 		Id1: strconv.Itoa(id1),
 		Id2: strconv.Itoa(id2),
+		Id3: strconv.Itoa(id3),
 	}
 
 	tmpl, _ := template.ParseFiles("html_templates/showSameId.html")
 	tmpl.Execute(w, data)
+	log.Println("Изменили HTML страницу")
 
 }
+// Открытие определенной html страницы из браузера
 func selectPage(w http.ResponseWriter, r *http.Request) {
 	page, _ := strconv.Atoi(r.URL.Query().Get("page"))
-	// fmt.Fprintf(w, "hsdgfhd %s", page)
-	// if page == 1 {
-	// 	tmpl, _ := template.ParseFiles("html_templates/1.html")
-	// 	tmpl.Execute(w, nil)
-	// } else if page == 2 {
-	// 	tmpl, _ := template.ParseFiles("html_templates/2.html")
-	// 	tmpl.Execute(w, nil)
-	// } else {
-	// 	tmpl, _ := template.ParseFiles("html_templates/3.html")
-	// 	tmpl.Execute(w, nil)
-	// }
-	tmpl,_ := template.ParseFiles("html_teplates/$d.html", page)
+	// Sprintf позволяет положить в переменную значение из строки браузера
+	var text = fmt.Sprintf("html_templates/%v.html", page)
+	// if r.URL.Path != "/select" {
+	// 	http.NotFound(w, r)
+	// 	log.Println("Пошли на несуществующую страницу")
+	// 	return
+	}
+	tmpl, err := template.ParseFiles(text){
+		if err != nil{
+			http.NotFound(w, r)
+		}
+		}
 	tmpl.Execute(w,nil)
+	log.Println("Вывели нужную нам страницу")
 }
 
 func main() {
