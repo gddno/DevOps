@@ -85,16 +85,17 @@ func selectPage(w http.ResponseWriter, r *http.Request) {
 	page, _ := strconv.Atoi(r.URL.Query().Get("page"))
 	// Sprintf позволяет положить в переменную значение из строки браузера
 	var text = fmt.Sprintf("html_templates/%v.html", page)
-	// if r.URL.Path != "/select" {
-	// 	http.NotFound(w, r)
-	// 	log.Println("Пошли на несуществующую страницу")
-	// 	return
-	}
-	tmpl, err := template.ParseFiles(text){
+	
+	// Выыодим страницу из папки html_template и в случае ошибки выводим КУЛЬТУРНО, что страница не найдена 
+	tmpl, err := template.ParseFiles(text)
 		if err != nil{
-			http.NotFound(w, r)
+			// http.NotFound(w, r)
+			tmpl, _ := template.ParseFiles("html_templates/ErrorMessage.html")
+			tmpl.Execute(w, nil)
+			log.Println("Пошли на несуществующую страницу")
+		return
 		}
-		}
+		
 	tmpl.Execute(w,nil)
 	log.Println("Вывели нужную нам страницу")
 }
